@@ -30,8 +30,6 @@
 
         #food{
             background-color: rgb(170, 44, 44);
-            grid-row: 1/1;
-            grid-column: 1/1;
         }
 
         .reglas {
@@ -41,7 +39,6 @@
             grid-template-columns: 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5%;
             grid-template-rows: 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5%; 
         }
-
         
 
     </style>
@@ -59,8 +56,11 @@
 
     var snake = document.getElementById('snake')
     var food = document.getElementById('food')
+    var snakeTail = document.getElementsByClassName('snakeBody')
     var ySnake = 0
     var xSnake = 0
+    var ySnakeTail = ySnake-=1
+    var xSnakeTail = xSnake-=1
     var timeOutVar
     var foodPositionX = 0
     var foodPositionY = 0
@@ -78,32 +78,43 @@
 
 
     function foodRandom(){
-        foodPositionX= Math.floor((Math.random() * 21));
-        foodPositionY= Math.floor((Math.random() * 21));
+        foodPositionX= Math.floor((Math.random() * 5)+1);
+        foodPositionY= Math.floor((Math.random() * 5)+1);
         food.style.gridColumnStart = foodPositionX
         food.style.gridColumnEnd = foodPositionX
         food.style.gridRowStart = foodPositionY
         food.style.gridRowEnd = foodPositionY
-        document.getElementById("food").style.display = "block";
-
     }
 
     function eat(){
-        document.getElementById("food").style.display = "none";
         foodRandom()
         snakeLonger()
+        moveTail()
+        
     }
-
-
+    function foodRandom(){
+        foodPositionX= Math.floor((Math.random() * 21)+1);
+        foodPositionY= Math.floor((Math.random() * 21)+1);
+        food.style.gridColumnStart = foodPositionX
+        food.style.gridColumnEnd = foodPositionX
+        food.style.gridRowStart = foodPositionY
+        food.style.gridRowEnd = foodPositionY
+        food.style.position = "block"
+    }
 
     function snakeLonger(){
         var divSnake = document.createElement("div") 
         divSnake.className = "snakeBody"
-        divSnake.id = "snakeBodyId"
+        divSnake.id = "snakeBodyId" //aqui va a cambiar 1, 2, 3,4
         document.getElementsByClassName("reglas")[0].appendChild(divSnake)
-        console.log("ya ")
     }
-     
+
+    function moveTail(){
+        SnakeTail.style.gridColumnStart =  xSnakeTail
+        SnakeTail.style.gridColumnEnd =  xSnakeTail
+        SnakeTail.style.gridRowStart = ySnakeTail
+        SnakeTail.style.gridRowEnd = ySnakeTail
+    }
     
     function cuenta (key){
         switch(key){ //derecha
@@ -124,15 +135,9 @@
                 timeOutSnake(key, 'y')
                 break
         }
-
-        console.log(xSnake, ySnake, foodPositionX, foodPositionY)
-
-        if (xSnake === foodPositionX && ySnake === foodPositionY){
-
-        //eat()
-        console.log("se lo comio")
-
-    }
+        if (snake.style.gridArea === food.style.gridArea ){
+            eat()
+        }
     }
     function timeOutSnake(key, eje){
 
@@ -149,10 +154,8 @@
             cuenta(key)
         }, 350)
         }
-        
-        //PROBANDO
+    } 
 
-} 
 
    /* document.addEventListener('keydown', (e) => {
         e.preventDefault()
@@ -212,5 +215,6 @@
 
 
     </script>
+   
 </body>
 </html>
