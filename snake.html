@@ -10,16 +10,14 @@
             margin: 0;
             padding: 0;
         }
-        .wrapper{
-            background-color: rgb(128, 177, 24);
-            width: 100%;
-            height: 650px;
-                   
+        .cuadro{
+            background-color: rgb(128, 177, 24);        
         }
+        
         #snake{
             background-color: black;
-            grid-row: 1/1;
-            grid-column: 1/1;
+            grid-row: 0/0;
+            grid-column: 0/0;
         }
 
         .snakeBody{
@@ -31,26 +29,14 @@
         #food{
             background-color: rgb(170, 44, 44);
         }
-
-        .reglas {
-            width: 100%;
-            height: 100%;
-            display: grid;
-            grid-template-columns: 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5%;
-            grid-template-rows: 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5%; 
-        }
         
 
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="reglas">
-            <div id="snake"></div>
-            <div id="food"></div>
-        </div>
-    </div>
-    
+        <div class="cuadro"></div>
+        <div id="snake"></div>
+        <div id="food"></div>
 
     <script>
 
@@ -59,8 +45,6 @@
     var snakeTail = document.getElementsByClassName('snakeBody')
     var ySnake = 0
     var xSnake = 0
-    var ySnakeTail = ySnake-=1
-    var xSnakeTail = xSnake-=1
     var timeOutVar
     var foodPositionX = 0
     var foodPositionY = 0
@@ -88,9 +72,7 @@
 
     function eat(){
         foodRandom()
-        snakeLonger()
-        moveTail()
-        
+        snakeLonger()  
     }
     function foodRandom(){
         foodPositionX= Math.floor((Math.random() * 21)+1);
@@ -108,30 +90,27 @@
         divSnake.id = "snakeBodyId" //aqui va a cambiar 1, 2, 3,4
         document.getElementsByClassName("reglas")[0].appendChild(divSnake)
     }
-
-    function moveTail(){
-        SnakeTail.style.gridColumnStart =  xSnakeTail
-        SnakeTail.style.gridColumnEnd =  xSnakeTail
-        SnakeTail.style.gridRowStart = ySnakeTail
-        SnakeTail.style.gridRowEnd = ySnakeTail
-    }
     
     function cuenta (key){
         switch(key){ //derecha
             case 39: 
-            xSnake+=1
+            console.log("(" + xSnake+ "," + ySnake+ ")")
+            xSnake++
             timeOutSnake(key, 'x')
                 break
             case 37: //izq
-                xSnake-= 1
+            console.log("(" + xSnake+ "," + ySnake+ ")")
+                xSnake--
                 timeOutSnake(key, 'x')
                 break
             case 38:
-                ySnake-=1 //arriba
+            console.log("(" + xSnake+ "," + ySnake+ ")")
+                ySnake-- //arriba
                 timeOutSnake(key, 'y')
                 break
             case 40: 
-                ySnake+=1 //abajo
+            console.log("(" + xSnake+ "," + ySnake+ ")")
+                ySnake++ //abajo
                 timeOutSnake(key, 'y')
                 break
         }
@@ -141,13 +120,14 @@
     }
     function timeOutSnake(key, eje){
 
-        if (eje=='x' && xSnake < 21 && xSnake>= 0){
+        if (eje=='x' && xSnake < 21 && xSnake>= 1){
             timeOutVar = setTimeout(()=>{
             snake.style.gridColumnStart = xSnake;
             snake.style.gridColumnEnd = xSnake;
             cuenta(key)
-        }, 350)
-        } else if (eje=='y' && ySnake < 21 && ySnake>= 0) {
+            
+        }, 350) 
+        } else if (eje=='y' && ySnake < 21 && ySnake>= 1) {
             timeOutVar = setTimeout(()=>{
             snake.style.gridRowStart = ySnake;
             snake.style.gridRowEnd = ySnake;
@@ -155,63 +135,6 @@
         }, 350)
         }
     } 
-
-
-   /* document.addEventListener('keydown', (e) => {
-        e.preventDefault()
-        clearTimeout(timeOutVar)
-        retardo(e.keyCode)
-    })*/
-
-/*
-    function retardo (key){
-        switch(key){
-            case 39: 
-                xSnake+= 5 //derecha
-                timeOutSnake(key, 'x')
-                break
-            case 37: 
-                xSnake-= 5 //izqui
-                timeOutSnake(key, 'x')
-                break
-            case 38:
-                ySnake-= 5 //arriba
-                timeOutSnake(key, 'y')
-                break
-            case 40: 
-                ySnake+=5 //abajo
-                timeOutSnake(key, 'y')
-                break
-        }
-    
-        
-    }*/
-
-   /* function timeOutSnakeX(key){
-
-        if (xSnake < 200 && xSnake> 0) {
-            timeOutVar = setTimeout(()=>{
-
-                console.log("entro x", xSnake)
-                snake.style.left = xSnake + 'px'
-                retardo(key)
-            }, 100)
-        }
-    }
-    function timeOutSnakeY(key){
-        console.log(ySnake, key)
-        if (ySnake < 200 && ySnake> 0 ) {
-            timeOutVar = setTimeout(()=>{
-                snake.style.top = ySnake + 'px'
-                console.log("entro y", ySnake)
-                retardo(key)
-            }, 100)
-        }
-    } DOS FUNCIONES*/
-
-
-
-
 
 
     </script>
