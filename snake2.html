@@ -6,9 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Snake Game 2</title>
     <style>
+
+    *{
+        margin: 0;
+        padding: 0;
+    }
     .square{
         background-color: rgb(44, 206, 119);
         border: 1px solid black;
+        width: 30px;
+        height: 30px;
+        float: left;
     }
     .snake{
         background-color: black;
@@ -16,10 +24,15 @@
     .food{
         background-color: coral;
     }
+
+    .wrapper{
+        clear: both;
+    }
     </style>
 </head>
 <body>
-    <div class="square"></div>
+    <div class="wrapper">
+    </div>
     <div class="snake"></div>
     <div class="food"></div>
 
@@ -27,8 +40,75 @@
         var cuadro = document.getElementsByClassName('square');
         var vibora = document.getElementsByClassName('snake');
         var comida = document.getElementsByClassName('food');
+        var contenedor = document.getElementsByClassName('wrapper')[0];
+        var ancho = Math.floor(screen.width / 30);
+        var alto = Math.floor(screen.height / 30);
+        var xSnake = 0
+        var ySnake = 0
+        var positionSnake = "(" + xSnake + ","+ ySnake + ")"
+        function addElement() { 
+            
+        }
 
+        //BACKGROUND
+
+        for(var p = 0; p < alto; p++){
+            var newWrapper = document.createElement("div");
+            newWrapper.className = "wrapper"
+            newWrapper.id = "w" + p
+
+            for(var i = 0; i < ancho-3; i++){
+                var newDiv = document.createElement("div"); 
+                newDiv.className = "square"
+                newDiv.id = "coord" + "(" + p + "," + i + ")"
+                newWrapper.append(newDiv)
+            } 
+            
+            document.body.appendChild(newWrapper)
         
+        }
+        
+        //AVANZAR
+        function cuenta (key){
+        switch(key){ //derecha
+            case 39: 
+                xSnake++
+                timeOutSnake(key, 'x')
+                break
+            case 37: //izq
+                xSnake--
+                timeOutSnake(key, 'x')
+                break
+            case 38:
+                ySnake-- //arriba
+                timeOutSnake(key, 'y')
+                break
+            case 40: 
+                ySnake++ //abajo
+                timeOutSnake(key, 'y')
+                break
+        }
+    }
+
+    function timeOutSnake(key, eje){
+
+        var body ge
+
+    if ( ){
+        timeOutVar = setTimeout(()=>{
+        snake.style.gridColumnStart = xSnake;
+        snake.style.gridColumnEnd = xSnake;
+        cuenta(key)
+        
+    }, 350) 
+ 
+    } 
+
+
+
+
+
+
     </script>
 </body>
 </html>
