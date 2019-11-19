@@ -28,12 +28,15 @@
     .wrapper{
         clear: both;
     }
+    #coord0_0{
+        background-color: black;
+    }
     </style>
 </head>
 <body>
     <div class="wrapper">
     </div>
-    <div class="snake"></div>
+    <div class="snake" id="coord (2,1)"></div>
     <div class="food"></div>
 
     <script>
@@ -45,7 +48,8 @@
         var alto = Math.floor(screen.height / 30);
         var xSnake = 0
         var ySnake = 0
-        var positionSnake = "(" + xSnake + ","+ ySnake + ")"
+        var positionSnake = "coord" + ySnake + "_" + xSnake;
+        var timeOutVar
         function addElement() { 
             
         }
@@ -60,54 +64,56 @@
             for(var i = 0; i < ancho-3; i++){
                 var newDiv = document.createElement("div"); 
                 newDiv.className = "square"
-                newDiv.id = "coord" + "(" + p + "," + i + ")"
+                newDiv.id = "coord" + p + "_" + i;
                 newWrapper.append(newDiv)
             } 
             
             document.body.appendChild(newWrapper)
         
+
         }
+        document.addEventListener('keydown', (e) => {
+            e.preventDefault()
+            clearTimeout(timeOutVar)
+            cuenta(e.keyCode)
+        
+        })
         
         //AVANZAR
         function cuenta (key){
         switch(key){ //derecha
             case 39: 
-                xSnake++
-                timeOutSnake(key, 'x')
+            xSnake++
+            timeOutSnake(key)
                 break
             case 37: //izq
                 xSnake--
-                timeOutSnake(key, 'x')
+                timeOutSnake(key)
                 break
             case 38:
                 ySnake-- //arriba
-                timeOutSnake(key, 'y')
+                timeOutSnake(key)
                 break
             case 40: 
                 ySnake++ //abajo
-                timeOutSnake(key, 'y')
+                timeOutSnake(key)
                 break
+                
         }
+        
+        
     }
 
-    function timeOutSnake(key, eje){
-
-        var body ge
-
-    if ( ){
+    function timeOutSnake(key){
         timeOutVar = setTimeout(()=>{
-        snake.style.gridColumnStart = xSnake;
-        snake.style.gridColumnEnd = xSnake;
-        cuenta(key)
-        
+            
+        vibora.id = positionSnake;
+        cuenta(key);
+        console.log(positionSnake)
+        document.getElementById(positionSnake).style.backgroundColor = "black";
     }, 350) 
- 
-    } 
-
-
-
-
-
+    
+    };
 
     </script>
 </body>

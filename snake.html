@@ -13,7 +13,7 @@
         .cuadro{
             background-color: rgb(128, 177, 24);        
         }
-        
+
         #snake{
             background-color: black;
             grid-row: 0/0;
@@ -94,22 +94,18 @@
     function cuenta (key){
         switch(key){ //derecha
             case 39: 
-            console.log("(" + xSnake+ "," + ySnake+ ")")
             xSnake++
             timeOutSnake(key, 'x')
                 break
             case 37: //izq
-            console.log("(" + xSnake+ "," + ySnake+ ")")
                 xSnake--
                 timeOutSnake(key, 'x')
                 break
             case 38:
-            console.log("(" + xSnake+ "," + ySnake+ ")")
                 ySnake-- //arriba
                 timeOutSnake(key, 'y')
                 break
             case 40: 
-            console.log("(" + xSnake+ "," + ySnake+ ")")
                 ySnake++ //abajo
                 timeOutSnake(key, 'y')
                 break
