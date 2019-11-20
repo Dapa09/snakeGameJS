@@ -49,7 +49,9 @@
         var xSnake = 0
         var ySnake = 0
         var positionSnake = "coord" + ySnake + "_" + xSnake;
+        var positionAntes
         var timeOutVar
+
         function addElement() { 
             
         }
@@ -83,34 +85,44 @@
         function cuenta (key){
         switch(key){ //derecha
             case 39: 
-            xSnake++
-            timeOutSnake(key)
+                positionAntes = "coord" + ySnake + "_" + xSnake 
+                xSnake++
+                positionSnake = "coord" + ySnake + "_" + xSnake 
+                
+                timeOutSnake(key)
                 break
             case 37: //izq
+                positionAntes = "coord" + ySnake + "_" + xSnake 
                 xSnake--
+                positionSnake = "coord" + ySnake + "_" + xSnake 
                 timeOutSnake(key)
                 break
             case 38:
+                positionAntes = "coord" + ySnake + "_" + xSnake 
                 ySnake-- //arriba
+                positionSnake = "coord" + ySnake + "_" + xSnake 
                 timeOutSnake(key)
                 break
             case 40: 
+                positionAntes = "coord" + ySnake + "_" + xSnake 
                 ySnake++ //abajo
+                positionSnake = "coord" + ySnake + "_" + xSnake 
                 timeOutSnake(key)
                 break
-                
         }
+              
+        document.getElementById(positionSnake).style.backgroundColor = "black";
+        document.getElementById(positionAntes).style.backgroundColor = "rgb(44, 206, 119)";
+
+
+        console.log(positionSnake)
         
         
     }
 
     function timeOutSnake(key){
         timeOutVar = setTimeout(()=>{
-            
-        vibora.id = positionSnake;
         cuenta(key);
-        console.log(positionSnake)
-        document.getElementById(positionSnake).style.backgroundColor = "black";
     }, 350) 
     
     };
