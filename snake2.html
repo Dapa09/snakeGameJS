@@ -18,10 +18,7 @@
         height: 30px;
         float: left;
     }
-    .snake{
-        background-color: black;
-    }
-    .food{
+    #food{
         background-color: coral;
     }
 
@@ -36,25 +33,21 @@
 <body>
     <div class="wrapper">
     </div>
-    <div class="snake" id="coord (2,1)"></div>
-    <div class="food"></div>
+    <div id="food"></div>
 
     <script>
         var cuadro = document.getElementsByClassName('square');
-        var vibora = document.getElementsByClassName('snake');
-        var comida = document.getElementsByClassName('food');
+        var food = document.getElementsByClassName('food');
         var contenedor = document.getElementsByClassName('wrapper')[0];
-        var ancho = Math.floor(screen.width / 30);
-        var alto = Math.floor(screen.height / 30);
+        var ancho = Math.floor(screen.width / 30 -1);
+        var alto = Math.floor(screen.height / 30 -1);
         var xSnake = 0
         var ySnake = 0
         var positionSnake = "coord" + ySnake + "_" + xSnake;
         var positionAntes
         var timeOutVar
 
-        function addElement() { 
-            
-        }
+        foodRandom();
 
         //BACKGROUND
 
@@ -74,14 +67,23 @@
         
 
         }
+        //COMIDA
+        function foodRandom(){
+            foodX= Math.floor((Math.random() * 25));
+            foodY= Math.floor((Math.random() * 19));
+            positionFood = "coord" + foodY + "_" + foodX; 
+        }
+        
+        document.getElementById(positionFood).style.backgroundColor = "coral";
+
+        
+        //AVANZAR
         document.addEventListener('keydown', (e) => {
             e.preventDefault()
             clearTimeout(timeOutVar)
             cuenta(e.keyCode)
         
         })
-        
-        //AVANZAR
         function cuenta (key){
         switch(key){ //derecha
             case 39: 
@@ -116,7 +118,6 @@
 
 
         console.log(positionSnake)
-        
         
     }
 
