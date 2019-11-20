@@ -46,8 +46,10 @@
         var positionSnake = "coord" + ySnake + "_" + xSnake;
         var positionAntes
         var timeOutVar
+        var positionFood
 
         foodRandom();
+        eat();
 
         //BACKGROUND
 
@@ -72,10 +74,10 @@
             foodX= Math.floor((Math.random() * 25));
             foodY= Math.floor((Math.random() * 19));
             positionFood = "coord" + foodY + "_" + foodX; 
+            console.log(positionFood)
         }
         
         document.getElementById(positionFood).style.backgroundColor = "coral";
-
         
         //AVANZAR
         document.addEventListener('keydown', (e) => {
@@ -115,11 +117,18 @@
               
         document.getElementById(positionSnake).style.backgroundColor = "black";
         document.getElementById(positionAntes).style.backgroundColor = "rgb(44, 206, 119)";
-
-
-        console.log(positionSnake)
+        eat();
         
     }
+    
+    function eat(){
+            if (positionSnake === positionFood){
+                console.log("comio")
+                foodRandom();
+                document.getElementById(positionFood).style.backgroundColor = "coral";
+
+            }
+        }
 
     function timeOutSnake(key){
         timeOutVar = setTimeout(()=>{
