@@ -40,8 +40,8 @@
         var cuadro = document.getElementsByClassName('square');
         var food = document.getElementsByClassName('food');
         var contenedor = document.getElementsByClassName('wrapper')[0];
-        var ancho = Math.floor(screen.width / 30 -1);
-        var alto = Math.floor(screen.height / 30 -1);
+        var ancho = Math.floor(window.innerWidth / 30 -1);
+        var alto = Math.floor(window.innerHeight / 30 -1);
         var xSnake = 0
         var ySnake = 0
         var positionSnake = "coord" + ySnake + "_" + xSnake;
@@ -49,8 +49,16 @@
         var timeOutVar
         var positionFood
 
-        foodRandom();
-        eat();
+        var snakeBody = {
+            1 : {
+                position: {
+                    x: xSnake,
+                    y: ySnake
+                }
+            }
+            
+        }
+
 
         //BACKGROUND
 
@@ -75,10 +83,10 @@
             foodX= Math.floor((Math.random() * 25));
             foodY= Math.floor((Math.random() * 19));
             positionFood = "coord" + foodY + "_" + foodX; 
-            console.log(positionFood)
+            document.getElementById(positionFood).style.backgroundColor = "coral";
         }
+        foodRandom();
         
-        document.getElementById(positionFood).style.backgroundColor = "coral";
         
         //AVANZAR
         document.addEventListener('keydown', (e) => {
@@ -88,12 +96,13 @@
         
         })
         function cuenta (key){
+
+            
         switch(key){ //derecha
             case 39: 
                 positionAntes = "coord" + ySnake + "_" + xSnake 
                 xSnake++
                 positionSnake = "coord" + ySnake + "_" + xSnake 
-                
                 timeOutSnake(key)
                 break
             case 37: //izq
@@ -114,22 +123,51 @@
                 positionSnake = "coord" + ySnake + "_" + xSnake 
                 timeOutSnake(key)
                 break
+                
         }
               
-        document.getElementById(positionSnake).style.backgroundColor = "black";
-        document.getElementById(positionAntes).style.backgroundColor = "rgb(44, 206, 119)";
-        eat();
-        
+        eat(key);
+        snakeBody["1"].position.x = xSnake
+        snakeBody["1"].position.y = ySnake
+        clearDisplay()
+        paintSnake()
+
+    }
+    function clearDisplay(){
+        for(let i= 0; i< cuadro.length; i++){
+            if(cuadro[i].id!==positionFood){
+                cuadro[i].style.backgroundColor = "rgb(44, 206, 119)";
+            }
+        }
+    }
+
+    function paintSnake(){
+        let valuesBody= Object.values(snakeBody)
+        valuesBody.forEach(element => {
+            let xBody = element['position']['x']
+            let yBody = element['position']['y']
+            document.getElementById("coord" + yBody + "_" + xBody).style.backgroundColor = "black";
+        })
     }
     
-    function eat(){
+    function eat(dir){
             if (positionSnake === positionFood){
-                console.log("comio")
-                document.getElementById(positionAntes).style.backgroundColor = "black";
+                let cuadros= Object.keys(snakeBody)
+                let ultimoCuadro = parseInt(cuadros[cuadros.length - 1]) +1
+                switch(dir){
+                    
+                    case 39:
+                        snakeBody[ultimoCuadro] = { position : {
+                            x: xSnake - 1,
+                            y: ySnake
+                        }   
+                    }
+                    break
+                }
+                document.getElementById(positionAntes).style.backgroundColor = "red";
                 foodRandom();
-                document.getElementById(positionFood).style.backgroundColor = "coral";
-
             }
+
         }
 
     function timeOutSnake(key){

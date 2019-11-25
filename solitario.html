@@ -11,7 +11,7 @@
         padding: 0;
         background-color:  rgba(56,150,38,1);
     }
-    .cartas{
+    .static{
         border: rgb(78, 171, 207) 1px solid;
         border-radius: 10px;
         height: 120px;
@@ -25,30 +25,114 @@
     #blank{
         border: none;
     }
+    .cartas{
+        background-color: cornsilk;
+        border-radius: 10px;
+        height: 120px;
+        width: 80px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 25px;
+        text-align: center;
+        display: none;
+    }
+    .rojo{
+        color: red;
+    }
+    .vuelta{
+        background-color: royalblue;
+        border-radius: 10px;
+        height: 120px;
+        width: 80px;
+        font-size: 0;
+    }
+    .as_corazon{
+        background-image: url(as_corazon.jpg);
+        background-size: cover;
+
+    }
     </style>
 </head>
 <body>
-    <div class="cartas" id="mazo"></div>
-    <div class="cartas" id="blank"></div>
-    <div class="cartas"></div>
-    <div class="cartas"></div>
-    <div class="cartas"></div>
-    <div class="cartas"></div>
-    <div class="cartas"></div>
-    <div class="cartas"></div>
-    <div class="cartas"></div>
-    <div class="cartas"></div>
+    <div class="static" id="mazo"></div>
+    <div class="static" id="blank"></div>
+    <div class="static" id="blank"></div>
+    <div class="static"></div>
+    <div class="static"></div>
+    <div class="static"></div>
+    <div class="static"></div>
+
     <div class="contenedor">
-        <div class="cartas juego" ></div>
-        <div class="cartas juego" ></div>
-        <div class="cartas juego"></div>
-        <div class="cartas juego"></div>
-        <div class="cartas juego"></div>
-        <div class="cartas juego"></div>
-        <div class="cartas juego"></div>
-        <div class="cartas juego"></div>
-        <div class="cartas juego"></div>
-        <div class="cartas juego"></div>
-    </div>  
+        <div class="static" id="fijo_1" ></div>
+        <div class="static" id="fijo_2"></div>
+        <div class="static" id="fijo_3"></div>
+        <div class="static" id="fijo_4"></div>
+        <div class="static" id="fijo_5"></div>
+        <div class="static" id="fijo_6"></div>
+        <div class="static" id="fijo_7"></div>
+    </div>
+    <div class="baraja">
+        <div class="cartas negro">A &spades;</div>
+        <div class="cartas negro">2 &spades;</div>
+        <div class="cartas negro">3 &spades;</div>
+        <div class="cartas negro">4 &spades;</div>
+        <div class="cartas negro">5 &spades;</div>
+        <div class="cartas negro">6 &spades;</div>
+        <div class="cartas negro">7 &spades;</div>
+        <div class="cartas negro">8 &spades;</div>
+        <div class="cartas negro">9 &spades;</div>
+        <div class="cartas negro">10 &spades;</div>
+        <div class="cartas negro">J &spades;</div>
+        <div class="cartas negro">Q &spades;</div>
+        <div class="cartas negro">K &spades;</div>
+
+        <div class="cartas negro">A &clubs;</div>
+        <div class="cartas negro">2 &clubs;</div>
+        <div class="cartas negro">3 &clubs;</div>
+        <div class="cartas negro">4 &clubs;</div>
+        <div class="cartas negro">5 &clubs;</div>
+        <div class="cartas negro">6 &clubs;</div>
+        <div class="cartas negro">7 &clubs;</div>
+        <div class="cartas negro">8 &clubs;</div>
+        <div class="cartas negro">9 &clubs;</div>
+        <div class="cartas negro">10 &clubs;</div>
+        <div class="cartas negro">J &clubs;</div>
+        <div class="cartas negro">Q &clubs;</div>
+        <div class="cartas negro">K &clubs;</div>
+
+        <div class="cartas rojo">A &hearts;</div>
+        <div class="cartas rojo">2 &hearts;</div>
+        <div class="cartas rojo">3 &hearts;</div>
+        <div class="cartas rojo">4 &hearts;</div>
+        <div class="cartas rojo">5 &hearts;</div>
+        <div class="cartas rojo">6 &hearts;</div>
+        <div class="cartas rojo">7 &hearts;</div>
+        <div class="cartas rojo">8 &hearts;</div>
+        <div class="cartas rojo">9 &hearts;</div>
+        <div class="cartas rojo">10 &hearts;</div>
+        <div class="cartas rojo">J &hearts;</div>
+        <div class="cartas rojo">Q &hearts;</div>
+        <div class="cartas rojo">K &hearts;</div>
+
+        <div class="cartas rojo">A &diams;</div>
+        <div class="cartas rojo">2 &diams;</div>
+        <div class="cartas rojo">3 &diams;</div>
+        <div class="cartas rojo">4 &diams;</div>
+        <div class="cartas rojo">5 &diams;</div>
+        <div class="cartas rojo">6 &diams;</div>
+        <div class="cartas rojo">7 &diams;</div>
+        <div class="cartas rojo">8 &diams;</div>
+        <div class="cartas rojo">9 &diams;</div>
+        <div class="cartas rojo">10 &diams;</div>
+        <div class="cartas rojo">J &diams;</div>
+        <div class="cartas rojo">Q &diams;</div>
+        <div class="cartas rojo">K &diams;</div>
+    </div>
+    <script>
+        var test = document.getElementById('fijo_1');
+        test.innerHTML = "A &hearts";
+
+    
+    </script>
+    
 </body>
 </html>
